@@ -118,7 +118,7 @@ export default function Home({ setModalOpen }) {
                 </button>
             </div>
             {/* Fake posts grid */}
-            <div className="w-full max-w-sm">
+            <div className="w-full max-w-sm pb-20">
                 <div className="mb-3 text-sm text-gray-400 font-medium">What others are sharing…</div>
                 <div className="grid grid-cols-2 gap-4">
                     {fakePosts.map((post, idx) => (
