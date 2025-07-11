@@ -93,12 +93,6 @@ export default function Home({ setModalOpen }) {
     // UI
     return (
         <div className="min-h-screen bg-gradient-to-b from-gray-50 via-amber-50 to-gray-100 flex flex-col items-center justify-start px-4 pb-8">
-            {/* Profile photo top right */}
-            <div className="w-full flex justify-end pt-6 pr-2">
-                {user?.photo_url && (
-                    <img src={user.photo_url} alt="Profile" className="w-12 h-12 rounded-full border border-gray-200 shadow object-cover" />
-                )}
-            </div>
             {/* Welcome header */}
             <div className="w-full max-w-sm flex flex-col items-center mt-2 mb-6">
                 <div className="text-lg text-gray-700 font-semibold mb-1 text-center">

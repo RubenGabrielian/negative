@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function Header({ emoji = '🖤', title = 'Dump It' }) {
+export default function Header({ emoji = '🖤', title = 'Tell Dark' }) {
     return (
         <header className="sticky top-0 z-10 bg-white border-b border-gray-200 w-full">
             <div className="max-w-md mx-auto flex items-center justify-center py-3">

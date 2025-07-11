@@ -68,7 +68,7 @@ export default function BottomNav({ onWriteClick }) {
     })();
 
     return (
-        <nav className="fixed bottom-0 left-0 w-full z-50">
+        <nav className="fixed bottom-0 left-0 w-full z-40">
             <div className="mx-auto max-w-sm">
                 <ul className="flex justify-between items-center bg-white rounded-t-xl shadow-[0_-2px_12px_0_rgba(0,0,0,0.06)] border-t border-gray-200 px-2 py-1">
                     {navItems.map((item) => (
