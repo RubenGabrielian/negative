@@ -4,6 +4,7 @@ export default function WriteModal({ open, onClose, onSubmit, loading }) {
     const [image, setImage] = useState(null);
     const [imagePreview, setImagePreview] = useState(null);
     const [text, setText] = useState('');
+    const [anonymous, setAnonymous] = useState(true);
     const fileInputRef = useRef();
 
     useEffect(() => {
@@ -27,7 +28,7 @@ export default function WriteModal({ open, onClose, onSubmit, loading }) {
     const handleSubmit = (e) => {
         e.preventDefault();
         if (!text.trim() && !image) return;
-        onSubmit({ text, image });
+        onSubmit({ text, image, anonymous });
     };
 
     if (!open) return null;
@@ -43,6 +44,19 @@ export default function WriteModal({ open, onClose, onSubmit, loading }) {
                     <span className="font-semibold text-gray-800 text-base">Share something...</span>
                 </div>
                 <form onSubmit={handleSubmit} className="flex flex-col px-6 pt-3 pb-5 gap-2">
+                    {/* Anonymous switcher */}
+                    <div className="flex items-center gap-3 mb-1">
+                        <span className="text-gray-500 text-sm">Post anonymously</span>
+                        <button
+                            type="button"
+                            className={`w-10 h-6 flex items-center rounded-full p-1 transition-colors duration-200 ${anonymous ? 'bg-amber-400' : 'bg-gray-200'}`}
+                            onClick={() => setAnonymous(a => !a)}
+                            aria-pressed={anonymous}
+                        >
+                            <span className={`w-4 h-4 bg-white rounded-full shadow transform transition-transform duration-200 ${anonymous ? 'translate-x-4' : ''}`}></span>
+                        </button>
+                        <span className="text-xs text-gray-400">{anonymous ? 'Anonymous' : 'With name'}</span>
+                    </div>
                     {/* Textarea */}
                     <textarea
                         className="w-full border-none outline-none bg-transparent text-lg placeholder-gray-400 min-h-[90px] resize-none font-normal focus:ring-0 focus:border-none focus:shadow-[0_0_0_2px_rgba(0,0,0,0.85)]"

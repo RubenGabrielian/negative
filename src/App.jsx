@@ -26,12 +26,12 @@ export default function App() {
 
     const telegramUser = window.Telegram?.WebApp?.initDataUnsafe?.user;
 
-    const handlePostSubmit = async ({ text, image }) => {
+    const handlePostSubmit = async ({ text, image, anonymous }) => {
         setPosting(true);
         let image_url = null;
         try {
             // Example: get userId from Telegram user
-            const userId = telegramUser?.id;
+            const userId = anonymous ? null : telegramUser?.id;
             // Supabase setup
             const supabaseUrl = 'https://zjlutuncfgciiubrkcfe.supabase.co';
             const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InpqbHV0dW5jZmdjaWl1YnJrY2ZlIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTIyMjg5ODksImV4cCI6MjA2NzgwNDk4OX0.rsWrY-osNEGdEidr8F7eI_i1mKbXh9Z84xJ_bFBI42w';
@@ -39,7 +39,7 @@ export default function App() {
 
             if (image) {
                 const fileExt = image.name.split('.').pop();
-                const fileName = `${userId}_${Date.now()}.${fileExt}`;
+                const fileName = `${userId || 'anon'}_${Date.now()}.${fileExt}`;
                 const { data, error } = await supabase.storage.from('posts').upload(fileName, image, { upsert: true });
                 if (error) {
                     console.error('Supabase Storage upload error:', error);
@@ -53,6 +53,7 @@ export default function App() {
                     user_id: userId,
                     text,
                     image_url,
+                    anonymous,
                 },
             ]);
             setModalOpen(false);
