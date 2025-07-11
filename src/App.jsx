@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef } from 'react';
-import { createClient } from '@supabase/supabase-js';
+import { createClient } from './utils/supabaseClient';
 import WebApp from '@twa-dev/sdk';
 import BottomNav from './components/BottomNav';
 import WriteModal from './components/WriteModal';
