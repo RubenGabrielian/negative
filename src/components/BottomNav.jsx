@@ -43,7 +43,7 @@ export default function BottomNav() {
                     <rect x="3" y="14" width="7" height="7" rx="2" />
                 </svg>
             ),
-            path: null, // Not implemented
+            path: '/feed',
         },
         {
             key: 'profile',
@@ -62,6 +62,7 @@ export default function BottomNav() {
     // Determine active tab by route
     const activeKey = (() => {
         if (location.pathname === '/profile') return 'profile';
+        if (location.pathname === '/feed') return 'feed';
         return 'home';
     })();
 
