@@ -9,8 +9,12 @@ export default function BottomNav() {
             key: 'home',
             label: 'Home',
             icon: (
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M3 12l9-9 9 9M4.5 10.5V21h15V10.5" />
+                // Modern filled grid icon for Home (same style as Feed)
+                <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" className="w-7 h-7">
+                    <rect x="3" y="3" width="7" height="7" rx="2" />
+                    <rect x="14" y="3" width="7" height="7" rx="2" />
+                    <rect x="14" y="14" width="7" height="7" rx="2" />
+                    <rect x="3" y="14" width="7" height="7" rx="2" />
                 </svg>
             ),
             path: '/',
@@ -19,8 +23,10 @@ export default function BottomNav() {
             key: 'write',
             label: 'Write',
             icon: (
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M16.862 4.487a2.25 2.25 0 113.182 3.182L7.5 20.213l-4.5 1.318 1.318-4.5 12.544-12.544z" />
+                // Filled square with plus for Write (same style as Feed)
+                <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" className="w-7 h-7">
+                    <rect x="3" y="3" width="18" height="18" rx="4" />
+                    <path d="M12 8v8M8 12h8" stroke="#fff" strokeWidth="2" strokeLinecap="round" />
                 </svg>
             ),
             path: null, // No route, handled by modal in App
@@ -29,8 +35,12 @@ export default function BottomNav() {
             key: 'feed',
             label: 'Feed',
             icon: (
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 5.25h16.5m-16.5 4.5h16.5m-16.5 4.5h16.5m-16.5 4.5h16.5" />
+                // Modern filled grid/feed icon
+                <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" className="w-7 h-7">
+                    <rect x="3" y="3" width="7" height="7" rx="2" />
+                    <rect x="14" y="3" width="7" height="7" rx="2" />
+                    <rect x="14" y="14" width="7" height="7" rx="2" />
+                    <rect x="3" y="14" width="7" height="7" rx="2" />
                 </svg>
             ),
             path: null, // Not implemented
@@ -39,8 +49,10 @@ export default function BottomNav() {
             key: 'profile',
             label: 'Profile',
             icon: (
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 7.5a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.5 19.5a7.5 7.5 0 1115 0v.75A2.25 2.25 0 0117.25 22.5h-10.5A2.25 2.25 0 014.5 20.25v-.75z" />
+                // Modern filled user/avatar icon
+                <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" className="w-7 h-7">
+                    <circle cx="12" cy="8" r="4" />
+                    <path d="M4 20c0-2.21 3.58-4 8-4s8 1.79 8 4v1a1 1 0 01-1 1H5a1 1 0 01-1-1v-1z" />
                 </svg>
             ),
             path: '/profile',
