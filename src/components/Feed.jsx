@@ -2,6 +2,9 @@ import React, { useEffect, useState } from 'react';
 import { supabase } from '../utils/supabaseClient';
 
 export default function Feed({ user }) {
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, []);
     const [posts, setPosts] = useState([]);
     const [loading, setLoading] = useState(true);
     const [supporting, setSupporting] = useState({}); // {postId: true}
