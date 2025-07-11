@@ -42,24 +42,24 @@ export default function App() {
         setPosting(true);
         let image_url = null;
         try {
-            if (image) {
-                // Upload image to Supabase Storage
-                const fileExt = image.name.split('.').pop();
-                const fileName = `${userId}_${Date.now()}.${fileExt}`;
-                const { data, error } = await supabase.storage.from('posts').upload(fileName, image, { upsert: true });
-                if (error) throw error;
-                // Get public URL
-                const { data: publicUrlData } = supabase.storage.from('posts').getPublicUrl(fileName);
-                image_url = publicUrlData?.publicUrl || null;
-                console.log(image_url);
+            // if (image) {
+            //     // Upload image to Supabase Storage
+            //     const fileExt = image.name.split('.').pop();
+            //     const fileName = `${userId}_${Date.now()}.${fileExt}`;
+            //     const { data, error } = await supabase.storage.from('posts').upload(fileName, image, { upsert: true });
+            //     if (error) throw error;
+            //     // Get public URL
+            //     const { data: publicUrlData } = supabase.storage.from('posts').getPublicUrl(fileName);
+            //     image_url = publicUrlData?.publicUrl || null;
+            //     console.log(image_url);
 
-            }
+            // }
             // Insert post to Supabase
             await supabase.from('posts').insert([
                 {
                     user_id: userId,
                     text,
-                    image_url,
+                    image_url: 'azziz',
                 },
             ]);
             setModalOpen(false);
