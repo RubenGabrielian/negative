@@ -25,7 +25,7 @@ export default function Feed() {
     }, []);
 
     return (
-        <div className="min-h-screen bg-gray-50 flex flex-col">
+        <div className="min-h-screen bg-gray-50 flex flex-col pt-10">
             <div className="flex-1 w-full max-w-md mx-auto px-4  mb-32 flex flex-col gap-4">
                 {loading ? (
                     <div className="text-gray-400 text-center py-12">Loading...</div>

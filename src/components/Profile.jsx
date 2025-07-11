@@ -14,6 +14,7 @@ export default function Profile({ user }) {
 
     const [posts, setPosts] = useState([]);
     const [loading, setLoading] = useState(true);
+    const [deletingId, setDeletingId] = useState(null);
 
     useEffect(() => {
         async function fetchPosts() {
@@ -33,6 +34,14 @@ export default function Profile({ user }) {
         }
         fetchPosts();
     }, [user]);
+
+    async function handleDelete(postId) {
+        if (!window.confirm('Are you sure you want to delete this post?')) return;
+        setDeletingId(postId);
+        const { error } = await supabase.from('posts').delete().eq('id', postId);
+        if (!error) setPosts(posts => posts.filter(p => p.id !== postId));
+        setDeletingId(null);
+    }
 
     return (
         <div className="min-h-screen bg-gray-50 flex flex-col items-center justify-start p-6">
@@ -61,6 +70,20 @@ export default function Profile({ user }) {
                                     <img src={post.image_url} alt="Post" className="w-16 h-16 rounded-md object-cover bg-gray-100 border border-gray-200" />
                                 )}
                                 <div className="flex-1 text-gray-700 text-sm break-words">{post.text}</div>
+                                <button
+                                    onClick={() => handleDelete(post.id)}
+                                    disabled={deletingId === post.id}
+                                    className="ml-2 p-2 rounded-full hover:bg-red-50 text-gray-400 hover:text-red-500 transition disabled:opacity-60"
+                                    title="Delete post"
+                                >
+                                    {deletingId === post.id ? (
+                                        <svg className="animate-spin w-5 h-5" fill="none" viewBox="0 0 24 24"><circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle><path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8z"></path></svg>
+                                    ) : (
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-5 h-5">
+                                            <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+                                        </svg>
+                                    )}
+                                </button>
                             </div>
                         ))}
                     </div>
