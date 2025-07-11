@@ -7,6 +7,7 @@ import TelegramUserSync from './components/TelegramUserSync';
 import Home from './components/Home';
 import Profile from './components/Profile';
 import Feed from './components/Feed';
+import Header from './components/Header';
 import { BrowserRouter as Router, Routes, Route, useNavigate } from 'react-router-dom';
 
 export default function App() {
@@ -64,6 +65,7 @@ export default function App() {
 
     return (
         <Router>
+            <Header />
             {/* Sync Telegram user to Supabase on mount */}
             <TelegramUserSync />
             {/* Write Modal */}
