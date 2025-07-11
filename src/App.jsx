@@ -14,6 +14,7 @@ export default function App() {
     const [fadeIn, setFadeIn] = useState(false);
     const [modalOpen, setModalOpen] = useState(false);
     const [posting, setPosting] = useState(false);
+    const [successMsg, setSuccessMsg] = useState('');
 
     // Fade-in for cards
     const [cardsVisible, setCardsVisible] = useState(false);
@@ -57,6 +58,8 @@ export default function App() {
                 },
             ]);
             setModalOpen(false);
+            setSuccessMsg('Your post was published!');
+            setTimeout(() => setSuccessMsg(''), 2000);
         } catch (err) {
             alert('Failed to post. Please try again.');
         } finally {
@@ -67,6 +70,11 @@ export default function App() {
     return (
         <Router>
             <Header />
+            {successMsg && (
+                <div className="fixed top-4 left-1/2 z-50 -translate-x-1/2 bg-emerald-50 border border-emerald-200 text-emerald-700 px-6 py-3 rounded-xl shadow-lg text-base font-semibold animate-fade-in-out">
+                    {successMsg}
+                </div>
+            )}
             {/* Sync Telegram user to Supabase on mount */}
             <TelegramUserSync />
             {/* Write Modal */}
@@ -80,7 +88,7 @@ export default function App() {
                     fadeIn={fadeIn}
                     cardsVisible={cardsVisible}
                 />} />
-                <Route path="/feed" element={<Feed />} />
+                <Route path="/feed" element={<Feed user={telegramUser} />} />
                 <Route path="/profile" element={<Profile user={telegramUser} />} />
             </Routes>
             <BottomNav onWriteClick={() => setModalOpen(true)} />
