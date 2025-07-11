@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 
-export default function BottomNav() {
+export default function BottomNav({ onWriteClick }) {
     const location = useLocation();
     const navigate = useNavigate();
     const navItems = [
@@ -20,18 +20,6 @@ export default function BottomNav() {
             path: '/',
         },
         {
-            key: 'write',
-            label: 'Write',
-            icon: (
-                // Filled square with plus for Write (same style as Feed)
-                <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" className="w-7 h-7">
-                    <rect x="3" y="3" width="18" height="18" rx="4" />
-                    <path d="M12 8v8M8 12h8" stroke="#fff" strokeWidth="2" strokeLinecap="round" />
-                </svg>
-            ),
-            path: null, // No route, handled by modal in App
-        },
-        {
             key: 'feed',
             label: 'Feed',
             icon: (
@@ -45,6 +33,19 @@ export default function BottomNav() {
             ),
             path: '/feed',
         },
+        {
+            key: 'write',
+            label: 'Write',
+            icon: (
+                // Filled square with plus for Write (same style as Feed)
+                <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" className="w-7 h-7">
+                    <rect x="3" y="3" width="18" height="18" rx="4" />
+                    <path d="M12 8v8M8 12h8" stroke="#fff" strokeWidth="2" strokeLinecap="round" />
+                </svg>
+            ),
+            path: null, // No route, handled by modal in App
+        },
+
         {
             key: 'profile',
             label: 'Profile',
@@ -76,9 +77,12 @@ export default function BottomNav() {
                                 className={`flex flex-col items-center justify-center w-full py-2 px-1 focus:outline-none transition group ${activeKey === item.key ? 'text-amber-600 font-semibold' : 'text-gray-400'}`}
                                 style={{ minHeight: 44 }}
                                 onClick={() => {
-                                    if (item.path) navigate(item.path);
+                                    if (item.key === 'write' && onWriteClick) {
+                                        onWriteClick();
+                                    } else if (item.path) {
+                                        navigate(item.path);
+                                    }
                                 }}
-                                disabled={!item.path}
                             >
                                 <span className={`mb-0.5 ${activeKey === item.key ? 'scale-110' : ''}`}>{item.icon}</span>
                                 <span className={`text-xs ${activeKey === item.key ? 'font-bold' : ''}`}>{item.label}</span>

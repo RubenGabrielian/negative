@@ -72,8 +72,8 @@ export default function App() {
             <WriteModal open={modalOpen} onClose={() => setModalOpen(false)} onSubmit={handlePostSubmit} loading={posting} />
             <Routes>
                 <Route path="/" element={<Home
-                    modalOpen={modalOpen}
                     setModalOpen={setModalOpen}
+                    modalOpen={modalOpen}
                     posting={posting}
                     handlePostSubmit={handlePostSubmit}
                     fadeIn={fadeIn}
@@ -82,7 +82,7 @@ export default function App() {
                 <Route path="/feed" element={<Feed />} />
                 <Route path="/profile" element={<Profile user={telegramUser} />} />
             </Routes>
-            <BottomNav />
+            <BottomNav onWriteClick={() => setModalOpen(true)} />
         </Router>
     );
 } 
