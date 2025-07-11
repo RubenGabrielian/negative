@@ -78,7 +78,7 @@ function TelegramUserSync() {
 
         // Supabase setup
         const supabaseUrl = 'https://zjlutuncfgciiubrkcfe.supabase.co';
-        const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InpqbHV0dW5jZmdjaWl1YnJrY2ZlIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTIyMjg5ODksImV4cCI6MjA2NzgwNDk4OX0.rsWrY-osNEGdEidr8F7eI_i1mKbXh9Z84xJ_bFBI42w';
+        const supabaseKey = 'sb_publishable_k-9JpTT_6iFV1-DEv-vxwg_-RHebGDr';
         const supabase = createClient(supabaseUrl, supabaseKey);
 
         // Prepare user data
