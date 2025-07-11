@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef } from 'react';
-import { createClient } from './utils/supabaseClient';
+import { createClient } from '@supabase/supabase-js';
 import WebApp from '@twa-dev/sdk';
 import BottomNav from './components/BottomNav';
 import WriteModal from './components/WriteModal';
@@ -29,9 +29,8 @@ export default function App() {
     const [modalOpen, setModalOpen] = useState(false);
     const [posting, setPosting] = useState(false);
 
-    // Get Telegram user object
-    const telegramUser = window.Telegram?.WebApp?.initDataUnsafe?.user;
-    const userId = telegramUser?.id;
+    // Get Telegram user id
+    const userId = window.Telegram?.WebApp?.initDataUnsafe?.user?.id;
 
     // Supabase setup (reuse from TelegramUserSync)
     const supabaseUrl = 'https://zjlutuncfgciiubrkcfe.supabase.co';
@@ -52,15 +51,13 @@ export default function App() {
                 // Get public URL
                 const { data: publicUrlData } = supabase.storage.from('posts').getPublicUrl(fileName);
                 image_url = publicUrlData?.publicUrl || null;
+                console.log(image_url);
+
             }
-            // Insert post to Supabase, including Telegram user info
+            // Insert post to Supabase
             await supabase.from('posts').insert([
                 {
-                    user_id: telegramUser?.id,
-                    first_name: telegramUser?.first_name || null,
-                    last_name: telegramUser?.last_name || null,
-                    username: telegramUser?.username || null,
-                    photo_url: telegramUser?.photo_url || null,
+                    user_id: userId,
                     text,
                     image_url,
                 },
