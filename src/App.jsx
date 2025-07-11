@@ -29,8 +29,9 @@ export default function App() {
     const [modalOpen, setModalOpen] = useState(false);
     const [posting, setPosting] = useState(false);
 
-    // Get Telegram user id
-    const userId = window.Telegram?.WebApp?.initDataUnsafe?.user?.id;
+    // Get Telegram user object
+    const telegramUser = window.Telegram?.WebApp?.initDataUnsafe?.user;
+    const userId = telegramUser?.id;
 
     // Supabase setup (reuse from TelegramUserSync)
     const supabaseUrl = 'https://zjlutuncfgciiubrkcfe.supabase.co';
@@ -52,10 +53,14 @@ export default function App() {
                 const { data: publicUrlData } = supabase.storage.from('posts').getPublicUrl(fileName);
                 image_url = publicUrlData?.publicUrl || null;
             }
-            // Insert post to Supabase
+            // Insert post to Supabase, including Telegram user info
             await supabase.from('posts').insert([
                 {
-                    user_id: userId,
+                    user_id: telegramUser?.id,
+                    first_name: telegramUser?.first_name || null,
+                    last_name: telegramUser?.last_name || null,
+                    username: telegramUser?.username || null,
+                    photo_url: telegramUser?.photo_url || null,
                     text,
                     image_url,
                 },
